@@ -1,21 +1,24 @@
 <launch>
-  
+
   <!-- Gmapping -->
   <!-- reference: http://wiki.ros.org/gmapping -->
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
     <param name="map_update_interval"  value="3.0"/>
-    <param name="maxUrange" value="80.0"/>
-    <param name="minimumScore" value="100"/>
-    <param name="particles" value="100"/>
+    <param name="maxUrange" value="10.0"/>
+    <param name="minimumScore" value="50"/>
+    <param name="particles" value="50"/>
     <param name="linearUpdate" value="0.5"/>
     <param name="angularUpdate" value="0.2"/>
-    <param name="temporalUpdate" value="0.4"/>
+    <param name="temporalUpdate" value="-1"/>
   </node> 
 
+
   <!-- explore-lite -->
-  <include file="$(find explore_lite)/launch/explore.launch">
-  </include>
+
+<!--  <include file="$(find explore_lite)/launch/explore.launch">
+  </include> 
+-->
 
   <!-- rviz -->
-  <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find test)/launch/default.rviz"/>
+  <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find planner)/launch/default.rviz"/>
 </launch>

@@ -1,6 +1,7 @@
 <launch>
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_world.world"/>
+<!--   <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_house.world"/> -->
+    <arg name="world_name" value="worlds/my.world"/>
     <arg name="paused" default="false"/>
     <arg name="use_sim_time" default="true"/>
     <arg name="gui" default="false"/>
@@ -9,12 +10,12 @@
   </include>
 
   <!-- Turtlebot3 --> 
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
-    <arg name="model" value="waffle" />
+    <arg name="model" value="burger" />
   </include>
 
-  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" respawn="false" output="screen" args="-urdf -model robot -param robot_description -x -2 -y -1"/> 
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" respawn="false" output="screen" args="-urdf -model robot -param robot_description "/> 
 
 
 </launch>

@@ -1,0 +1,33 @@
+<launch>
+ 
+    <include file="$(find rrt_exploration)/launch/simple.launch"/> 
+    <include file="$(find turtlebot3_slam)/launch/turtlebot3_gmapping.launch"/> 
+ 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"/>
+ 
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">
+      <param name="footprint_padding" value="0.01" />
+      <param name="controller_frequency" value="5.0" />
+      <param name="controller_patience" value="3.0" />
+      <param name="oscillation_timeout" value="30.0" />
+      <param name="oscillation_distance" value="0.5" />
+      <param name="planner_patience" value="1" />
+      <param name="controller_patience" value="1" /> 
+      <param name="recovery_behavior_enabled" value="false" />
+      <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_burger.yaml" command="load" ns="global_costmap" />
+      <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_burger.yaml" command="load" ns="local_costmap" />
+      <rosparam file="$(find turtlebot3_navigation)/param/local_costmap_params.yaml" command="load" />
+      <rosparam file="$(find turtlebot3_navigation)/param/global_costmap_params.yaml" command="load" />
+      <rosparam file="$(find turtlebot3_navigation)/param/base_local_planner_params.yaml" command="load" />
+      <param name="global_costmap/global_frame" value="/map"/>
+      <param name="global_costmap/robot_base_frame" value="/base_link"/>
+      <param name="global_costmap/laser_scan_sensor/sensor_frame" value="/base_scan"/>
+      <param name="global_costmap/laser_scan_sensor/topic" value="/scan"/>    
+      <param name="local_costmap/global_frame" value="/map"/>
+      <param name="local_costmap/robot_base_frame" value="/base_link"/>
+      <param name="local_costmap/laser_scan_sensor/sensor_frame" value="/base_scan"/>
+      <param name="local_costmap/laser_scan_sensor/topic" value="/scan"/>
+      <param name="local_costmap/obstacle_layer/laser_scan_sensor/topic" value="/scan"/>
+      <remap from="cmd_vel" to="cmd_vel"/>
+    </node>
+</launch>

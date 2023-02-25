@@ -1,9 +1,9 @@
 <launch>
-  <include file="$(find test)/launch/world.launch">
+  <include file="$(find planner)/launch/world.launch">
   </include>
-  <include file="$(find test)/launch/move_base.launch">
+  <include file="$(find planner)/launch/move_base.launch">
   </include>
-  <include file="$(find test)/launch/slam.launch">
+  <include file="$(find planner)/launch/slam.launch">
   </include>
   
 </launch>

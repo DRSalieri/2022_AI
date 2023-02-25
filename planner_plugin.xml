@@ -1,0 +1,5 @@
+<library path="lib/libplanner.lib">  
+  <class name="my_global_planner/MyGlobalPlanner" type="my_global_planner::MyGlobalPlanner" base_class_type="nav_core::BaseGlobalPlanner">
+  </class>
+ </library>
+
